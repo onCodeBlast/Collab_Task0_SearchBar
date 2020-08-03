@@ -4,13 +4,13 @@ srcapp.controller('rootCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.appTitle = "SearchApp";
     initValues($scope);
     $scope.src.itemSelected = itemSelected;
-    $scope.src.query = (text) => query($http, text, $scope);
+    $scope.src.query = (text) => query($http, text);
 }]);
-function query(http, text, scope){
+function query(http, text){
     return http.get("http://localhost:3000/words",{
         params: {
             word_like: text,
-            _limit: 20
+            _limit: 10
         },
         responseType: "json"
     }).then(response => {
